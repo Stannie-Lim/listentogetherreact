@@ -1,12 +1,10 @@
 import axios from 'axios';
 import { _login } from './actions';
 
-export const login = () => {
+export const login = (info) => {
     return async dispatch => {
         try {
-            // axios call here
-            const tempdata = 'hello';
-            dispatch(_login(tempdata));
+            dispatch(_login(info));
         } catch(err) {
             console.log(err);
         }

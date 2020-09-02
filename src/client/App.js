@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { HashRouter, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { HashRouter, Route, Redirect } from 'react-router-dom';
 
 // store
 import { getSchools } from './store/store';
@@ -10,15 +10,20 @@ import Login from './components/Login';
 import Home from './components/Home';
 
 const App = () => {
-	
+	const user = useSelector( ({ user }) => user);
 	useEffect( () => {
 		
 	});
 
 	return (
 		<HashRouter>
-			<Route path='/' component={ Login } />
-			<Route exact path='/home' component={ Home } />
+			{
+				user.id ? <Route exact path='/home' component={ Home } /> : 
+				<div>
+					<Route path='/' component={ Login } />
+					<Redirect to='/' />
+				</div>
+			}
 		</HashRouter>
 	);
 };

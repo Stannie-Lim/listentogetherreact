@@ -1,9 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const LoggedIn = (prop) => {
+    const user = useSelector( ({ user }) => user);
+    console.log(user);
     return (
-        <h1>Hello</h1>
+        <div>
+            <h1>{ user.display_name }</h1>
+        </div>
     );
 };
 

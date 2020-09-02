@@ -1,1 +1,1 @@
-export const GET_SCHOOLS = 'GET_SCHOOLS';
+export const LOGIN = 'LOGIN';

@@ -4,10 +4,10 @@ import {createLogger} from 'redux-logger';
 
 // schools
 import SchoolsReducer from './schools/reducer';
-import { getSchools } from './schools/thunks';
+import { login } from './schools/thunks';
 
 const reducer = combineReducers({
-	schools: SchoolsReducer
+	user: SchoolsReducer
 });
 
 
@@ -17,6 +17,6 @@ const store = createStore(reducer, applyMiddleware(thunks, createLogger({collaps
 export default store;
 
 export {
-	getSchools,
+	login,
 
 };
