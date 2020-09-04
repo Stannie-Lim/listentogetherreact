@@ -2,12 +2,17 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunks from 'redux-thunk';
 import {createLogger} from 'redux-logger';
 
-// schools
-import SchoolsReducer from './schools/reducer';
-import { login } from './schools/thunks';
+// auth
+import user from './auth/reducer';
+import { login } from './auth/thunks';
+
+// room
+import room from './room/reducer';
+import { createRoom } from './room/thunks';
 
 const reducer = combineReducers({
-	user: SchoolsReducer
+	user,
+	room
 });
 
 
@@ -18,5 +23,5 @@ export default store;
 
 export {
 	login,
-
+	createRoom
 };
