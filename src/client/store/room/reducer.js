@@ -1,8 +1,8 @@
-import { CREATE_ROOM } from '../constants';
+import { SET_ROOM } from '../constants';
 
 const Room = (state = [], action) => {
     switch(action.type) {
-        case CREATE_ROOM:
+        case SET_ROOM:
             state = action.room;
             break;
     };

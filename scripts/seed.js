@@ -1,11 +1,12 @@
-const { db /* models here */ } = require("../src/server/db/models");
+const { db, Room } = require("../src/server/db/models");
 
 const seed = async () => {
   await db.sync({ force: true });
   console.log("seeding");
 
   try {
-    console.log("idk seed something here");
+    const room = await Room.create({ id: Math.random().toString(36).substring(7) });
+    
   } catch (err) {
     console.log(err);
   }

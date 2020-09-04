@@ -1,8 +1,8 @@
-import { CREATE_ROOM } from '../constants';
+import { SET_ROOM } from '../constants';
 
-export const _createRoom = room => {
+export const _setRoom = room => {
     return {
-        type: CREATE_ROOM,
+        type: SET_ROOM,
         room
     };
 };

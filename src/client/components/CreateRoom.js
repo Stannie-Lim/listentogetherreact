@@ -1,18 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-
-// store
-import { createRoom } from '../store/store';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 const CreateRoom = () => {
-    const dispatch = useDispatch();
-
-    const create = () => {
-        dispatch(createRoom());
-    };
-
     return (
-        <button onClick={ () => create() }>Create room</button>        
+        <Link to='/create'>Create Room</Link>
     );
 };
 

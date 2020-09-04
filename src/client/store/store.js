@@ -8,7 +8,7 @@ import { login } from './auth/thunks';
 
 // room
 import room from './room/reducer';
-import { createRoom } from './room/thunks';
+import { createRoom, leaveRoom, joinRoom } from './room/thunks';
 
 const reducer = combineReducers({
 	user,
@@ -23,5 +23,7 @@ export default store;
 
 export {
 	login,
-	createRoom
+	createRoom,
+	leaveRoom,
+	joinRoom
 };
