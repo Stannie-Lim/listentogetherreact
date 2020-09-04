@@ -10,6 +10,6 @@ socket.on("message", (data) => {
   console.log(data, "asdasd");
 });
 
-socket.emit("room", { roomCode: "sadasdsadas" });
+socket.emit("room", { roomCode: "fake data" });
 
 export default socket;
