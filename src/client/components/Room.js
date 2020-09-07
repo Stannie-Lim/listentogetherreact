@@ -4,6 +4,10 @@ import { useDispatch } from 'react-redux';
 // store
 import { leaveRoom } from '../store/store';
 
+// components
+import SongPlayer from './music/SongPlayer';
+import Search from './music/Search';
+
 const Room = ({ match }) => {
     const { id } = match.params;
 
@@ -16,7 +20,11 @@ const Room = ({ match }) => {
     });
 
     return (
-        <h1>{ id } </h1>
+        <div>
+            <h1>{ id } </h1>
+            <Search />
+            <SongPlayer />
+        </div>
     );
 };
 

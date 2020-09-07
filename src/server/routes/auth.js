@@ -8,8 +8,9 @@ module.exports = router;
 // root route is /api/auth
 
 router.get('/', async(req, res, next) => {
+    const scopes = ["streaming", "user-read-email", "user-read-private", "user-modify-playback-state", "user-read-playback-state"].join('%20');
     try {
-        const authUrl = `https://accounts.spotify.com/authorize?client_id=${process.env.CLIENT_ID}&response_type=code&scope=${encodeURIComponent('user-modify-playback-state user-read-playback-state')}&redirect_uri=${encodeURIComponent(process.env.REDIRECT_URI)}`;
+        const authUrl = `https://accounts.spotify.com/authorize?client_id=${ process.env.CLIENT_ID }&response_type=code&scope=${ scopes }&redirect_uri=${ encodeURIComponent(process.env.REDIRECT_URI) }`;
         res.redirect(authUrl);
     } catch(err) {
         next(err);
