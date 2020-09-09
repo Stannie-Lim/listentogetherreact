@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { HashRouter, Route, Redirect } from 'react-router-dom';
+import { removeTokens } from './utils/axios';
 
 //components 
 import Home from './components/Home';
@@ -11,9 +12,6 @@ import CreateLoading from './components/CreateRoomLoading';
 
 const App = () => {
 	const user = useSelector( ({ user }) => user);
-	useEffect( () => {
-		
-	});
 
 	return (
 		<HashRouter>

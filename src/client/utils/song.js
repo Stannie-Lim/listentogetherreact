@@ -7,7 +7,3 @@ export const minimumifySong = ({ album, artists, uri, name, id }) => {
         id,
     };
 };
-
-export const minimumifyPlaylist = (playlist) => {
-
-};

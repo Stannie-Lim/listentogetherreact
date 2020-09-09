@@ -5,8 +5,9 @@ import { useDispatch } from 'react-redux';
 import { leaveRoom } from '../store/store';
 
 // components
-import SongPlayer from './music/SongPlayer';
 import Search from './music/Search';
+import SongPlayer from './music/SongPlayer';
+import Playlists from './music/Playlists';
 
 const Room = ({ match }) => {
     const { id } = match.params;
@@ -14,15 +15,15 @@ const Room = ({ match }) => {
     const dispatch = useDispatch();
     useEffect(() => {
         return () => {
-            alert('hello');
             dispatch(leaveRoom(user.id));
-        };
+        };  
     });
 
     return (
         <div>
             <h1>{ id } </h1>
             <Search />
+            <Playlists />
             <SongPlayer />
         </div>
     );
