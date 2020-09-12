@@ -2,3 +2,47 @@ body {
   font-family: verdana;
 }
 
+img {
+  height: 5rem;
+  border-radius: 50%;
+}
+
+.hide {
+  display: none;
+}
+
+.playlist-songs {
+  max-height: 60vh;
+  overflow: scroll;
+}
+
+.song-card {
+  border: 1px solid black;
+}
+
+.playlist {
+  display: flex;
+  min-height: 80vh;
+  max-height: 80vh;
+}
+
+.playlist-info, .playlist-songs {
+  width: 30vw;
+}
+
+.player {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.queue {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 30vw;
+  border: 1px solid black;
+  min-height: 90vh;
+  max-height: 90vh;
+  overflow: scroll;
+}

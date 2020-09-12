@@ -29,7 +29,7 @@ const Song = db.define('song', {
         notEmpty: true,
     }
   },
-  imageUri: {
+  image: {
     type: STRING,
     allowNull: false,
     validators: {

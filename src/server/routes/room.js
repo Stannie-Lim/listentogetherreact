@@ -39,7 +39,7 @@ router.post('/', async(req, res, next) => {
     const { id } = req.body;
     const roomId = Math.random().toString(36).substring(7);
     try {
-        const room = await Room.create({ id: roomId });
+        const room = await Room.create({ id: roomId }, { include: Queue });
         res.send(room);
     } catch(err) {
         next(err);

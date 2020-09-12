@@ -1,21 +1,24 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 // store
 import { leaveRoom } from '../store/store';
 
 // components
+import Queue from './music/Queue';
 import Search from './music/Search';
-import SongPlayer from './music/SongPlayer';
 import Playlists from './music/Playlists';
+import SongPlayer from './music/SongPlayer';
 
 const Room = ({ match }) => {
     const { id } = match.params;
 
     const dispatch = useDispatch();
+
+    const user = useSelector( ({ user }) => user.id);
     useEffect(() => {
         return () => {
-            dispatch(leaveRoom(user.id));
+            dispatch(leaveRoom(user));
         };  
     });
 
@@ -25,6 +28,7 @@ const Room = ({ match }) => {
             <Search />
             <Playlists />
             <SongPlayer />
+            <Queue />
         </div>
     );
 };

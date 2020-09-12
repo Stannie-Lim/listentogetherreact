@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Song = ({ song }) => {
+const QueueSongCard = ({ song }) => {
     return (
-        <div>
+        <div className='song-card'>
             <img src={ song.image } />
             <h1>{ song.name }</h1>
             <h3>{ song.artist }</h3>
@@ -10,4 +10,4 @@ const Song = ({ song }) => {
     );
 };
 
-export default Song;
+export default QueueSongCard;

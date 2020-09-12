@@ -10,9 +10,14 @@ import { login } from './auth/thunks';
 import room from './room/reducer';
 import { createRoom, leaveRoom, joinRoom } from './room/thunks';
 
+// song 
+import queue from './song/reducer';
+import { getQueue, addToQueue } from './song/thunks';
+
 const reducer = combineReducers({
 	user,
-	room
+	room,
+	queue,
 });
 
 
@@ -25,5 +30,7 @@ export {
 	login,
 	createRoom,
 	leaveRoom,
-	joinRoom
+	joinRoom,
+	getQueue,
+	addToQueue,
 };

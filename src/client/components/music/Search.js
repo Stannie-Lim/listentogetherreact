@@ -3,7 +3,7 @@ import { minimumifySong } from '../../utils/song';
 import { AxiosHttpRequest } from '../../utils/axios';
 
 // components
-import Song from './Song';
+import SongCard from '../cards/SongCard';
 
 const Search = () => {
     const [ searchTerm, setSearchTerm ] = useState('');
@@ -19,7 +19,7 @@ const Search = () => {
             <input type='text' onChange={ ({ target }) => setSearchTerm(target.value) } value={ searchTerm } />
             <button onClick={ search }>Search</button>
             {
-                results && results.map(song => <Song key={ song.id } song={ song } />)
+                results && results.map(song => <SongCard key={ song.id } song={ song } />)
             }
         </div>
     );

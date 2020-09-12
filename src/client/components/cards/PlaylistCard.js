@@ -7,13 +7,14 @@ import SongCard from './SongCard';
 
 const PlaylistCard = ({ playlist }) => {
     const [ songs, setSongs ] = useState([]);
+    const [ display, setDisplay ] = useState(false);
 
     useEffect( () => {
         getSongs();
     }, []);
 
     const getSongs = async() => {
-        const { items } = (await AxiosHttpRequest('GET', playlist)).data;
+        const { items } = (await AxiosHttpRequest('GET', playlist.uri)).data;
         const allSongs = [];
         for(const song of items) {
             allSongs.push(minimumifySong(song.track));
@@ -23,9 +24,15 @@ const PlaylistCard = ({ playlist }) => {
 
     return (
         <div>
-            {
-                songs.map(song => <SongCard key={ song.id } song={ song } /> )
-            }
+            <div className='playlist-info'>
+                <h1>{ playlist.name }</h1>
+                <img onClick={ () => setDisplay(!display) } src={ playlist.img } />
+            </div>
+            <div className={ display ? 'playlist-songs' : 'playlist-songs hide' }>
+                {
+                    songs.map(song => <SongCard key={ song.id } song={ song } /> )
+                }
+            </div>
         </div>
     );
 };
