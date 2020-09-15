@@ -45,3 +45,13 @@ router.post('/', async(req, res, next) => {
         next(err);
     }
 });
+
+router.get('/users/:id', async(req, res, next) => {
+    const { id } = req.params;
+    try {
+        const { users } = await Room.findByPk(id, { include: User });
+        res.send(users);
+    } catch(err) {
+        next(err);
+    }
+});

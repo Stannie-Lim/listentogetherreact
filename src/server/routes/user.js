@@ -19,12 +19,12 @@ router.get('/', async(req, res, next) => {
 });
 
 router.post('/', async(req, res, next) => {
-    const { id } = req.body;
+    const { id, display_name, email, image, uri } = req.body;
     try {
         const user = await User.findByPk(id);
         if(user) res.send(user);
         else {
-            const newUser = await User.create({ id });
+            const newUser = await User.create({ id, display_name, email, image, uri });
             res.send(newUser);
         }
     } catch(err) {

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { leaveRoom } from '../store/store';
 
 // components
+import Users from './Users';
 import Queue from './music/Queue';
 import Search from './music/Search';
 import Playlists from './music/Playlists';
@@ -28,7 +29,10 @@ const Room = ({ match }) => {
             <Search />
             <Playlists />
             <SongPlayer />
-            <Queue />
+            <div className='rightside'>
+                <Queue />
+                <Users />
+            </div>
         </div>
     );
 };

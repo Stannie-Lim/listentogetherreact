@@ -27,7 +27,7 @@ img {
 }
 
 .playlist-info, .playlist-songs {
-  width: 30vw;
+  width: 15vw;
 }
 
 .player {
@@ -36,13 +36,24 @@ img {
   width: 100%;
 }
 
-.queue {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 30vw;
+.queue, .users {
+  /* top: 0; */
+  /* right: 0; */
+  width: 20vw;
   border: 1px solid black;
   min-height: 90vh;
   max-height: 90vh;
-  overflow: scroll;
+  overflow: auto;
+}
+
+.rightside {
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.usercard {
+  display: flex;
+  flex-wrap: wrap;
 }
