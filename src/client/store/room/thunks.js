@@ -19,9 +19,9 @@ export const createRoom = (id) => {
 export const joinRoom = (id, roomId) => {
     return async dispatch =>{ 
         try {
-            const { data } = await AxiosHttpRequest('POST', `${API_URL}/user/join/${roomId}`, { id });
-            console.log(data);
-            dispatch(_setRoom(data));
+            await AxiosHttpRequest('POST', `${API_URL}/user/join/${roomId}`, { id });
+            const room = (await AxiosHttpRequest('GET', `${API_URL}/room/${roomId}`)).data;
+            dispatch(_setRoom( {...room, queueId: room.queue.id } ));
         } catch(err) {
             console.log(err);
         }

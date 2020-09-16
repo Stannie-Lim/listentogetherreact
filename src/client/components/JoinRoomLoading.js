@@ -8,7 +8,6 @@ import { joinRoom } from '../store/store';
 const Loading = ({ match }) => {
     const { id } = match.params;
 
-
     const userId = useSelector( ({ user }) => user.id);
     const room = useSelector( ({ room }) => room);
 
