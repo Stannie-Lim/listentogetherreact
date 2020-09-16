@@ -5,15 +5,17 @@ module.exports = (io) => {
     );
 
     let room;
+    let currentUser;
     socket.on("room", ({ user }) => {
       const { roomId } = user;
       room = roomId;
+      currentUser = user;
       socket.join(roomId);
       io.sockets.in(roomId).emit('newuser', user);
     });
 
     socket.on("disconnect", () => {
-      console.log(`Connection ${socket.id} has left the building`);
+      io.sockets.in(room).emit('disconnect', currentUser);
     });
   });
 };

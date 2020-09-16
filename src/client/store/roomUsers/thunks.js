@@ -2,7 +2,7 @@ import { API_URL } from '../../secrets';
 import { AxiosHttpRequest } from '../../utils/axios';
 
 // actions
-import { _getRoomUsers, _addNewUser } from './actions';
+import { _getRoomUsers, _addNewUser, _removeUser } from './actions';
 
 export const getRoomUsers = (id) => {
     return async dispatch => {
@@ -14,5 +14,11 @@ export const getRoomUsers = (id) => {
 export const addNewUser = user => {
     return async dispatch => {
         dispatch(_addNewUser(user));
+    };
+};
+
+export const removeUser = user => {
+    return async dispatch => {
+        dispatch(_removeUser(user));
     };
 };

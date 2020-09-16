@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // store
-import { getRoomUsers, addNewUser } from '../store/store';
+import { getRoomUsers, addNewUser, removeUser } from '../store/store';
 
 // components
 import User from './cards/UserCard';
@@ -17,11 +17,15 @@ const Users = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         getUsers()
+
         socket.on('newuser', user => {
-            console.log(user, 'hello');
             dispatch(addNewUser(user));
-            // console.log(users);
         });
+
+        socket.on('disconnect', user => {
+            dispatch(removeUser(user));
+        });
+
     }, []);
 
     const getUsers = () => {

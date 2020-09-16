@@ -1,4 +1,4 @@
-import { GET_ROOM_USERS, ADD_NEW_USER } from '../constants';
+import { GET_ROOM_USERS, ADD_NEW_USER, REMOVE_USER } from '../constants';
 
 const roomUsersReducer = (state = [], action) => {
     switch(action.type) {
@@ -7,6 +7,9 @@ const roomUsersReducer = (state = [], action) => {
             break;
         case ADD_NEW_USER:
             state = [...state, action.user];
+            break;
+        case REMOVE_USER:
+            state = state.filter(user => user.id !== action.user.id);
             break;
     };
     return state;
