@@ -6,10 +6,13 @@ socket.on("connect", () => {
   console.log("Connected!");
 });
 
-socket.on("message", (data) => {
-  console.log(data, "asdasd");
-});
-
-socket.emit("room", { roomCode: "fake data" });
+const connectToRoom = (user) => {
+  socket.emit("room", { user });
+};
 
 export default socket;
+
+export { 
+  connectToRoom,
+
+};

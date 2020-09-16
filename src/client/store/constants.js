@@ -10,3 +10,4 @@ export const ADD_TO_QUEUE = 'ADD_TO_QUEUE';
 
 // room users
 export const GET_ROOM_USERS = 'GET_ROOM_USERS';
+export const ADD_NEW_USER = 'ADD_NEW_USER';

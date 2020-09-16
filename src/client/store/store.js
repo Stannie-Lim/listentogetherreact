@@ -16,7 +16,7 @@ import { getQueue, addToQueue } from './song/thunks';
 
 // room users
 import usersInRoom from './roomUsers/reducer';
-import { getRoomUsers } from './roomUsers/thunks';
+import { getRoomUsers, addNewUser } from './roomUsers/thunks';
 
 const reducer = combineReducers({
 	user,
@@ -38,5 +38,7 @@ export {
 	joinRoom,
 	getQueue,
 	addToQueue,
-	getRoomUsers
+	getRoomUsers,
+	addNewUser,
+
 };

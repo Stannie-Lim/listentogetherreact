@@ -6,16 +6,18 @@ import { useSelector, useDispatch } from 'react-redux';
 // store
 import { createRoom } from '../store/store';
 
-import "../socket";
+import { connectToRoom } from "../socket";
 
 const Loading = () => {
     const dispatch = useDispatch();
 
     const id = useSelector( ({ user }) => user.id);
     const room = useSelector( ({ room }) => room);
+    const user = useSelector( ({ user }) => user);
     
     useEffect( () => {
         dispatch(createRoom(id));
+        connectToRoom(user);
     }, []);
 
     return (

@@ -5,15 +5,19 @@ import { useDispatch, useSelector } from 'react-redux';
 // store 
 import { joinRoom } from '../store/store';
 
+// socket
+import { connectToRoom } from '../socket';
+
 const Loading = ({ match }) => {
     const { id } = match.params;
 
-    const userId = useSelector( ({ user }) => user.id);
+    const user = useSelector( ({ user }) => user);
     const room = useSelector( ({ room }) => room);
 
     const dispatch = useDispatch();
     useEffect( () => {
-        dispatch(joinRoom(userId, id));
+        dispatch(joinRoom(user.id, id));
+        connectToRoom(user);
     }, []);
 
     return (
