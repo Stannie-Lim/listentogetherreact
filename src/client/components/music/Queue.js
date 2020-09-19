@@ -2,18 +2,23 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // store 
-import { getQueue } from '../../store/store';
+import { getQueue, getRoom } from '../../store/store';
 
 // components
 import QueueSongCard from '../cards/QueueSongCard';
 
-const Queue = () => {
+const Queue = ({ id }) => {
     const dispatch = useDispatch();
     const queue = useSelector( ({ queue }) => queue);
     const room = useSelector( ({ room }) => room);
+    const user = useSelector( ({ user }) => user);
     
     useEffect( () => {
-        dispatch(getQueue(room.queueId));
+        if(room.id) {
+            dispatch(getQueue(room.queueId));
+        } else {
+            dispatch(getRoom(user.roomId));
+        }
     }, [ queue.length ]);
 
     return (

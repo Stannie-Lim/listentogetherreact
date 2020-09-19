@@ -4,18 +4,15 @@ module.exports = (io) => {
       `A socket connection to the server has been made: ${socket.id}`
     );
 
-    let room;
     let currentUser;
     socket.on("room", ({ user }) => {
       const { roomId } = user;
-      room = roomId;
       currentUser = user;
-      socket.join(roomId);
-      io.sockets.in(roomId).emit('newuser', user);
+      io.sockets.emit('newuser', { user, roomId });
     });
 
     socket.on("disconnect", () => {
-      io.sockets.in(room).emit('disconnect', currentUser);
+      io.sockets.emit('disconnect', { currentUser });
     });
   });
 };

@@ -1,16 +1,20 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { getAccessToken } from '../../utils/axios';
+import { useSelector, useDispatch } from 'react-redux';
 import SpotifyPlayer from 'react-spotify-web-playback';
 
 // store
-import { getQueue } from '../../store/store';
+import { getQueue, getPlayerState } from '../../store/store';
 
 const SongPlayer = () => {
 
     const songs = useSelector( ({ queue }) => queue.map(song => song.spotifyUri));
+    const musicPlayer = useSelector( ({ musicPlayer }) => musicPlayer);
+
+    const dispatch = useDispatch();
     useEffect(() => {
-        console.log(songs);
+        dispatch(getPlayerState());
+        console.log(musicPlayer);
     }, [ songs.length ]);
 
     return (
@@ -18,7 +22,6 @@ const SongPlayer = () => {
             <SpotifyPlayer
                 token={ getAccessToken() }
                 uris={ songs }
-                autoPlay={ true }
             />
         </div>  
     );

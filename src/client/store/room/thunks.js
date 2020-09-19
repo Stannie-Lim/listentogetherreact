@@ -1,6 +1,8 @@
-import { _setRoom } from './actions';
 import { API_URL } from '../../secrets';
 import { AxiosHttpRequest } from '../../utils/axios';
+
+// actions
+import { _setRoom } from './actions';
 
 export const createRoom = (id) => {
     return async dispatch => {
@@ -28,11 +30,22 @@ export const joinRoom = (id, roomId) => {
     };
 };
 
-export const leaveRoom = (id) => {
+export const leaveRoom = (user) => {
     return async dispatch => {
         try { 
-            const { data } = await AxiosHttpRequest('POST', `${API_URL}/user/leave`, { id });
-            // dispatch(_setRoom(data));
+            await AxiosHttpRequest('POST', `${API_URL}/user/leave`, { id: user.id });
+            dispatch(_setRoom(null));
+        } catch(err) {
+            console.log(err);
+        }
+    };
+};
+
+export const getRoom = (id) => {
+    return async dispatch => {
+        try {
+            const { data } = await AxiosHttpRequest('GET', `${API_URL}/room/${id}`);
+            dispatch(_setRoom({ ...data, queueId: data.queueId }));
         } catch(err) {
             console.log(err);
         }

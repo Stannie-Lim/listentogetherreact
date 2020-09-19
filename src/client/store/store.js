@@ -8,7 +8,7 @@ import { login } from './auth/thunks';
 
 // room
 import room from './room/reducer';
-import { createRoom, leaveRoom, joinRoom } from './room/thunks';
+import { createRoom, leaveRoom, joinRoom, getRoom } from './room/thunks';
 
 // song 
 import queue from './song/reducer';
@@ -18,16 +18,20 @@ import { getQueue, addToQueue } from './song/thunks';
 import usersInRoom from './roomUsers/reducer';
 import { getRoomUsers, addNewUser, removeUser } from './roomUsers/thunks';
 
+// music player state 
+import musicPlayer from './musicPlayer/reducer';
+import { getPlayerState } from './musicPlayer/thunks';
+
 const reducer = combineReducers({
 	user,
 	room,
 	queue,
 	usersInRoom,
+	musicPlayer,
 });
 
 
 const store = createStore(reducer, applyMiddleware(thunks, createLogger({collapsed: true})));
-
 
 export default store;
 
@@ -41,5 +45,7 @@ export {
 	getRoomUsers,
 	addNewUser,
 	removeUser,
+	getRoom,
+	getPlayerState,
 
 };

@@ -70,7 +70,6 @@ router.post('/playlist', async(req, res, next) => {
         for(const song of playlist) {
             queue.push(await Song.create({...song, queueId }));
         }
-        console.log(queue);
         res.send(queue);
     } catch(err) {
         next(err);

@@ -12,3 +12,6 @@ export const ADD_TO_QUEUE = 'ADD_TO_QUEUE';
 export const GET_ROOM_USERS = 'GET_ROOM_USERS';
 export const ADD_NEW_USER = 'ADD_NEW_USER';
 export const REMOVE_USER = 'REMOVE_USER';
+
+// music player
+export const GET_PLAYER_STATE = 'GET_PLAYER_STATE';

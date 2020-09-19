@@ -1,6 +1,6 @@
 import { SET_ROOM } from '../constants';
 
-const Room = (state = [], action) => {
+const Room = (state = {}, action) => {
     switch(action.type) {
         case SET_ROOM:
             state = action.room;

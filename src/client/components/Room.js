@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -16,22 +17,22 @@ const Room = ({ match }) => {
 
     const dispatch = useDispatch();
 
-    const user = useSelector( ({ user }) => user.id);
-    useEffect(() => {
-        return () => {
-            dispatch(leaveRoom(user));
-        };  
-    });
+    const user = useSelector( ({ user }) => user);
+    
+    const userLeaveRoom = () => {
+        dispatch(leaveRoom(user));
+    };
 
     return (
         <div>
+            <Link to='/home' onClick={ () => userLeaveRoom() }>Leave Room</Link>
             <h1>{ id } </h1>
             <Search />
             <Playlists />
             <SongPlayer />
             <div className='rightside'>
-                <Queue />
-                <Users />
+                <Queue id={ id } />
+                <Users id={ id } />
             </div>
         </div>
     );

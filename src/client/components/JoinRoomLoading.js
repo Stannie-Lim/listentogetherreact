@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
+import { AxiosHttpRequest } from '../utils/axios';
 import { useDispatch, useSelector } from 'react-redux';
 
 // store 
-import { joinRoom } from '../store/store';
+import { joinRoom, login } from '../store/store';
 
 // socket
 import { connectToRoom } from '../socket';
@@ -11,14 +12,20 @@ import { connectToRoom } from '../socket';
 const Loading = ({ match }) => {
     const { id } = match.params;
 
-    const user = useSelector( ({ user }) => user);
     const room = useSelector( ({ room }) => room);
+    const data = useSelector( ({ user }) => user);
 
     const dispatch = useDispatch();
     useEffect( () => {
-        dispatch(joinRoom(user.id, id));
-        connectToRoom(user);
+        getData();
     }, []);
+
+    const getData = async() => {
+        // const { data } = await AxiosHttpRequest('GET', `https://api.spotify.com/v1/me`);
+        connectToRoom(data);
+        dispatch(joinRoom(data.id, id));
+        dispatch(login(data));
+    }
 
     return (
         room.id ? <Redirect to={`/room/${id}`} /> : <h1>Loading</h1>

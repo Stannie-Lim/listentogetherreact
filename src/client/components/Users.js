@@ -10,15 +10,14 @@ import User from './cards/UserCard';
 // socket
 import socket from '../socket';
 
-const Users = () => {
-    const roomId = useSelector( ({ room }) => room.id);
+const Users = ({ id }) => {
     const users = useSelector( ({ usersInRoom }) => usersInRoom);
 
     const dispatch = useDispatch();
     useEffect(() => {
         getUsers()
 
-        socket.on('newuser', user => {
+        socket.on('newuser', ({ user, roomId }) => {
             dispatch(addNewUser(user));
         });
 
@@ -29,7 +28,7 @@ const Users = () => {
     }, []);
 
     const getUsers = () => {
-        dispatch(getRoomUsers(roomId));
+        dispatch(getRoomUsers(id));
     };
 
     return (
