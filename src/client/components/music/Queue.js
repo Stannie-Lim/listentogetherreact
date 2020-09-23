@@ -14,8 +14,6 @@ const Queue = ({ id }) => {
     const room = useSelector( ({ room }) => room);
     const user = useSelector( ({ user }) => user);
     
-
-    console.log(queue);
     useEffect( () => {
         if(room.id) {
             dispatch(getQueue(room.queueId));

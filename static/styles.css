@@ -66,3 +66,7 @@ img {
   display: flex;
   justify-content: space-around;
 }
+
+.current-song {
+  border: 10px solid lightseagreen;
+}
