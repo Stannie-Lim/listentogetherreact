@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // store
-import { leaveRoom } from '../store/store';
+import { leaveRoom, getPlayerState } from '../store/store';
 
 // components
 import Users from './Users';
@@ -18,7 +18,7 @@ const Room = ({ match }) => {
     const dispatch = useDispatch();
 
     const user = useSelector( ({ user }) => user);
-    
+
     const userLeaveRoom = () => {
         dispatch(leaveRoom(user));
     };

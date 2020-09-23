@@ -61,3 +61,8 @@ img {
 .currently-playing {
   display: flex;
 }
+
+.controls {
+  display: flex;
+  justify-content: space-around;
+}

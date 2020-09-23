@@ -6,6 +6,7 @@ const musicPlayer = (state = {}, action) => {
             state = action.player;
             break;
     };
+
     return state;
 };
 

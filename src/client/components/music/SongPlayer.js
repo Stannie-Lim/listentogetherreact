@@ -8,8 +8,6 @@ import { getQueue, getPlayerState } from '../../store/store';
 
 const SongPlayer = () => {
     const [ device, setDevice ] = useState('');
-    const [ currentPlaying, setCurrentPlaying ] = useState({});
-    const [ paused, setPaused ] = useState(true);
 
     const songs = useSelector( ({ queue }) => queue.map(song => song.spotifyUri));
     const musicPlayer = useSelector( ({ musicPlayer }) => musicPlayer);
@@ -19,14 +17,7 @@ const SongPlayer = () => {
     // TODO: PUT THIS IN REDUX STORE SO YOU CAN ACTUALLY PLAY MUSIC
     const [ music, setMusic ] = useState({});
 
-    const temp = async() => {
-
-    };
-
     useEffect(() => {
-        temp();
-
-
         const playerCheckInterval = setInterval(() => checkForPlayer(), 1000);
 
         const checkForPlayer = () => {
@@ -34,7 +25,7 @@ const SongPlayer = () => {
                 clearInterval(playerCheckInterval);
                 const player = new window.Spotify.Player({
                   name: "Music Player",
-                  getOAuthToken: cb => { cb(getAccessToken()); },
+                  getOAuthToken: cb => cb(getAccessToken()),
                 });
 
                 setMusic(player);
@@ -52,10 +43,8 @@ const SongPlayer = () => {
             player.on('playback_error', e => { console.error(e); });
           
             // Playback status updates
-            player.on('player_state_changed', ({ track_window, paused }) => { 
-                const { current_track } = track_window;
-                setCurrentPlaying(current_track);
-                setPaused(paused);
+            player.on('player_state_changed', (state) => { 
+                dispatch(getPlayerState(state));
             });
           
             // Ready
@@ -63,28 +52,33 @@ const SongPlayer = () => {
                 setDevice(device_id);
             });
         }
-
-        dispatch(getPlayerState());
-
-        console.log(device);
     }, [ songs.length ]);
 
     const play = () => {
         music.togglePlay();
-        setPaused(!paused);
+    };
+
+    const next = () => {
+        music.nextTrack();
+    };
+
+    const prev = () => {
+        music.previousTrack();
     };
 
     return (
         <div className='player'>
             {
-                currentPlaying.id && 
+                musicPlayer.track_window && 
                 <div>
                     <div className='currently-playing'>
-                        <img src={ currentPlaying.album.images[0].url } />
-                        <h1>{ currentPlaying.name }</h1>
+                        <img src={ musicPlayer.track_window.current_track.album.images[0].url } />
+                        <h1>{ musicPlayer.track_window.current_track.name }</h1>
                     </div>
                     <div className='controls'>
-                        <h1 onClick={ () => play() }>{ paused ? 'Play' : 'Pause' }</h1>
+                        <h1 onClick={ () => prev() }>Previous</h1>
+                        <h1 onClick={ () => play() }>{ musicPlayer.paused ? 'Play' : 'Pause' }</h1>
+                        <h1 onClick={ () => next() }>Next</h1>
                     </div>
                 </div>
             }

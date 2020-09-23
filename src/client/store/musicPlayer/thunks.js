@@ -4,13 +4,11 @@ import { AxiosHttpRequest } from '../../utils/axios';
 // actions
 import { _getPlayerState } from './actions';
 
-export const getPlayerState = () => {
+export const getPlayerState = (state) => {
     return async dispatch => {
         try {
-            const {data} = await AxiosHttpRequest('GET', 'https://api.spotify.com/v1/me/player');
-            if(data !== '') {
-                dispatch(_getPlayerState(data));
-            }
+            console.log(state);
+            dispatch(_getPlayerState(state));
         } catch(err) {
             console.log(err);
         }   
