@@ -36,14 +36,21 @@ img {
   width: 100%;
 }
 
-.queue, .users {
+.users, .queue {
   /* top: 0; */
   /* right: 0; */
-  width: 20vw;
   border: 1px solid black;
-  min-height: 90vh;
-  max-height: 90vh;
+  min-height: 80vh;
+  max-height: 80vh;
   overflow: auto;
+}
+
+.users {
+  width: 20vw;
+}
+
+.queue {
+  width: 60vw;
 }
 
 .rightside {

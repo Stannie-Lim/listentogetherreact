@@ -46,6 +46,7 @@ const App = () => {
 				<div>
 					<Route path='/room/:id' component={ JoinLoading } />
 					<Route path='/' component={ Login } />
+					<Redirect to='/' />
 				</div>
 			}
 		</HashRouter>

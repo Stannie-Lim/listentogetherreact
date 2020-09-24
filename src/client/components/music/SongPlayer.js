@@ -46,7 +46,7 @@ const SongPlayer = () => {
             player.on('player_state_changed', (state) => { 
                 dispatch(getPlayerState(state));
             });
-          
+
             // Ready
             player.on('ready', ({ device_id }) => {
                 setDevice(device_id);
@@ -56,6 +56,8 @@ const SongPlayer = () => {
 
     const play = () => {
         music.togglePlay();
+
+        setInterval(() => getState(), 2000);
     };
 
     const next = () => {
@@ -64,6 +66,12 @@ const SongPlayer = () => {
 
     const prev = () => {
         music.previousTrack();
+    };
+
+    const getState = async() => {
+        const state = await music.getCurrentState();
+        
+        console.log(state.position, 'saldjaslkdjaslkdsajlkdsakldjsakld');
     };
 
     return (

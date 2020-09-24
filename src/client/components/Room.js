@@ -27,8 +27,8 @@ const Room = ({ match }) => {
         <div>
             <Link to='/home' onClick={ () => userLeaveRoom() }>Leave Room</Link>
             <h1>{ id } </h1>
-            <Search />
-            <Playlists />
+            {/* <Search /> */}
+            {/* <Playlists /> */}
             <SongPlayer />
             <div className='rightside'>
                 <Queue id={ id } />
