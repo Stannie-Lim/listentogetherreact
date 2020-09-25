@@ -84,28 +84,28 @@ router.post('/:id/playerstate', async(req, res, next) => {
     const { id } = req.params;
     const { context, position, paused, current_track, next_tracks, previous_tracks } = req.body;
     try {
-        let state = await PlayerState.findOne({ where: { roomId: id }});
-
+        let state = (await PlayerState.findOrCreate({ where: { roomId: id }, defaults: {roomId: id, context, position, paused }}))[0];
         if(state !== null) {
             await state.update({ context, position, paused });
             const { image, artist, uri, name } = current_track;
-            const song = await Song.findOne({ where: { currentTrackId: state.id }});
+            const song = (await Song.findOrCreate({ where: { currentTrackId: state.id }, defaults: { image, artist, spotifyUri: uri, name, currentTrackId: state.id }}))[0];
             await song.update({ image, artist, spotifyUri: uri, name });
 
             for(const song of previous_tracks) {
                 const { image, artist, uri, name } = song;
-                const foundSong = await Song.findOne({ where: { previousTrackId: state.id }});
+                const foundSong = (await Song.findOrCreate({ where: { previousTrackId: state.id }, defaults: { image, artist, spotifyUri: uri, name, previousTrackId: state.id }}))[0];
                 await foundSong.update({ image, artist, spotifyUri: uri, name, previousTrackId: state.id });
             }
 
-            for(const song of next_tracks) {
+            for(let i = next_tracks.length - 1; i >= 0; i--) {
+                const song = next_tracks[i];
                 const { image, artist, uri, name } = song;
-                const foundSong = await Song.findOne({ where: { nextTrackId: state.id }});
+                const foundSong = (await Song.findOrCreate({ where: { nextTrackId: state.id }, defaults: { image, artist, spotifyUri: uri, name, nextTrackId: state.id }}))[0];
                 await foundSong.update({ image, artist, spotifyUri: uri, name, nextTracksId: state.id });
             }   
 
         } else {
-            state = await PlayerState.create({ roomId: id, context, position, paused });
+            // state = await PlayerState.create({ roomId: id, context, position, paused });
             const { image, artist, uri, name } = current_track;
             await Song.create({ image, artist, spotifyUri: uri, name, currentTrackId: state.id });
 
