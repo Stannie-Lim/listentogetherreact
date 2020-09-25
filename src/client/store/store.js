@@ -20,7 +20,7 @@ import { getRoomUsers, addNewUser, removeUser } from './roomUsers/thunks';
 
 // music player state 
 import musicPlayer from './musicPlayer/reducer';
-import { getPlayerState } from './musicPlayer/thunks';
+import { getPlayerState, postPlayerState } from './musicPlayer/thunks';
 
 const reducer = combineReducers({
 	user,
@@ -47,5 +47,6 @@ export {
 	removeUser,
 	getRoom,
 	getPlayerState,
+	postPlayerState,
 
 };

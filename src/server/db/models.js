@@ -5,7 +5,8 @@ const {
   Room,
   User,
   Queue,
-  Song
+  Song,
+  PlayerState
 } = require('./models/relations')
 
 module.exports = {
@@ -13,5 +14,6 @@ module.exports = {
   Room,
   User,
   Queue, 
-  Song
+  Song,
+  PlayerState
 }

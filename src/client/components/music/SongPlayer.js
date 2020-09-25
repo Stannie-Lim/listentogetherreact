@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import SpotifyPlayer from 'react-spotify-web-playback';
 
 // store
-import { getQueue, getPlayerState } from '../../store/store';
+import { getQueue, getPlayerState, postPlayerState } from '../../store/store';
 
-const SongPlayer = () => {
+const SongPlayer = ({ id }) => {
     const [ device, setDevice ] = useState('');
 
     const songs = useSelector( ({ queue }) => queue.map(song => song.spotifyUri));
@@ -44,7 +44,7 @@ const SongPlayer = () => {
           
             // Playback status updates
             player.on('player_state_changed', (state) => { 
-                dispatch(getPlayerState(state));
+                dispatch(getPlayerState(id, state));
             });
 
             // Ready
@@ -57,7 +57,7 @@ const SongPlayer = () => {
     const play = () => {
         music.togglePlay();
 
-        setInterval(() => getState(), 2000);
+        setInterval(() => getState(), 3000);
     };
 
     const next = () => {
@@ -70,8 +70,7 @@ const SongPlayer = () => {
 
     const getState = async() => {
         const state = await music.getCurrentState();
-        
-        console.log(state.position, 'saldjaslkdjaslkdsajlkdsakldjsakld');
+        dispatch(postPlayerState(id, state));
     };
 
     return (

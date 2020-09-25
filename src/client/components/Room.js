@@ -29,7 +29,7 @@ const Room = ({ match }) => {
             <h1>{ id } </h1>
             {/* <Search /> */}
             {/* <Playlists /> */}
-            <SongPlayer />
+            <SongPlayer id={ id } />
             <div className='rightside'>
                 <Queue id={ id } />
                 <Users id={ id } />
