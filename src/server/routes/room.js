@@ -105,7 +105,6 @@ router.post('/:id/playerstate', async(req, res, next) => {
             }   
 
         } else {
-            // state = await PlayerState.create({ roomId: id, context, position, paused });
             const { image, artist, uri, name } = current_track;
             await Song.create({ image, artist, spotifyUri: uri, name, currentTrackId: state.id });
 
@@ -120,9 +119,20 @@ router.post('/:id/playerstate', async(req, res, next) => {
             }   
         }
 
+        state = await PlayerState.findOne({ where: { roomId: id }}, {
+            include: [{
+                model: Song,
+                as: 'previousTrack'
+            }, {
+                model: Song,
+                as: 'currentTrack',
+            },{
+                model: Song,
+                as: 'nextTrack',
+            }] 
+        });
+
         res.send(state);
-
-
     } catch(err) {
         next(err);
     }

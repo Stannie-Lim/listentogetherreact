@@ -6,6 +6,9 @@ import SpotifyPlayer from 'react-spotify-web-playback';
 // store
 import { getQueue, getPlayerState, postPlayerState } from '../../store/store';
 
+// icons 
+import { BiPlayCircle, BiPauseCircle, BiSkipPrevious, BiSkipNext } from 'react-icons/bi';
+
 const SongPlayer = ({ id }) => {
     const [ device, setDevice ] = useState('');
 
@@ -83,9 +86,13 @@ const SongPlayer = ({ id }) => {
                         <h1>{ musicPlayer.track_window.current_track.name }</h1>
                     </div>
                     <div className='controls'>
-                        <h1 onClick={ () => prev() }>Previous</h1>
-                        <h1 onClick={ () => play() }>{ musicPlayer.paused ? 'Play' : 'Pause' }</h1>
-                        <h1 onClick={ () => next() }>Next</h1>
+                        <BiSkipPrevious size='3rem' onClick={ () => prev() } />
+                        {
+                            musicPlayer.paused ?
+                            <BiPlayCircle size='3rem' onClick={ () => play() } /> :
+                            <BiPauseCircle size='3rem' onClick={ () => play() } />
+                        }
+                        <BiSkipNext size='3rem' onClick={ () => next() } />
                     </div>
                 </div>
             }

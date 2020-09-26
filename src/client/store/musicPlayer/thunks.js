@@ -27,7 +27,7 @@ export const postPlayerState = (id, { context, position, paused, track_window })
             previous_tracks = previous_tracks.map(track => minimumifySong(track));
 
             const { data } = await AxiosHttpRequest('POST', `${API_URL}/room/${id}/playerstate`, { context: uri, current_track, next_tracks, previous_tracks, paused, position });
-            console.log(data);
+            // dispatch(_getPlayerState(data));
         } catch(err) {
             console.log(err);
         }
